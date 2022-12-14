@@ -2,10 +2,6 @@
     display: flex;
     justify-content: space-around;
 }
-.form__field{
-   
-
-}
 .label{
     display: block;
     margin-left: 50%;
