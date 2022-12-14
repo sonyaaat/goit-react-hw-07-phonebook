@@ -35,6 +35,9 @@
 .form__button:focus {
     color: #FFF;
 }
+.form__button:disabled{
+    background-color: gray;
+}
 .form__button:before,
 .form__button:after {
     content: "";
