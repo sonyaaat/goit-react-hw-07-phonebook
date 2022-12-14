@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from '../ContactsEditor/ContactsEditor.module.css';
-import { addContact } from 'redux/contactsSlice';
 import Notiflix from 'notiflix';
-import { getContacts } from 'redux/selectors';
+import { addContact } from 'redux/operations';
+import { getContacts, getIsLoading } from 'redux/selectors';
 import { useState } from 'react';
 const ContactsEditor = () => {
   const [name, setName] = useState('');
@@ -27,6 +27,7 @@ const ContactsEditor = () => {
   };
   const dispatch=useDispatch()
   const contacts = useSelector(getContacts)
+  const isLoading=useSelector(getIsLoading)
   const handleSubmit=(evt)=>{
     evt.preventDefault();
     const form = evt.target;
@@ -37,7 +38,8 @@ const ContactsEditor = () => {
           Notiflix.Notify.warning(`${name} is already in contacts`);
           return;
         }
-    const object={name:form.elements.name.value, number:form.elements.number.value}
+      
+    const object={name:form.elements.name.value, phone:form.elements.number.value}
     dispatch(addContact(object));
     form.reset();
     reset()
@@ -76,7 +78,7 @@ const ContactsEditor = () => {
           onChange={handleChange}
         />
       </div>
-      <button className={css.form__button} type="submit">
+      <button className={css.form__button} disabled={isLoading} type="submit">
         Add contact
       </button>
     </form>

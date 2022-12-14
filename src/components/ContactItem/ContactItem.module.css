@@ -27,3 +27,6 @@ font-size: 20px;
 border-radius: 5px;
 cursor:pointer;
 }
+.button:disabled{
+    background-color: grey;
+}
